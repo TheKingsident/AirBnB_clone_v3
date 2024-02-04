@@ -31,8 +31,28 @@ def get_state(state_id):
     abort(404)
 
 
+@app_views.route('/states/<state_id>/', methods=['GET'])
+def get_state_w_slash(state_id):
+    """Retrieves a State object"""
+    state = storage.get('State', state_id)
+    if state:
+        return jsonify([state.to_dict()])
+    abort(404)
+
+
 @app_views.route('/states/<state_id>', methods=['DELETE'])
 def delete_state(state_id):
+    """Deletes a State object"""
+    state = storage.get('State', state_id)
+    if state:
+        storage.delete(state)
+        storage.save()
+        return jsonify({}), 200
+    abort(404)
+
+
+@app_views.route('/states/<state_id>/', methods=['DELETE'])
+def delete_state_w_slash(state_id):
     """Deletes a State object"""
     state = storage.get('State', state_id)
     if state:
