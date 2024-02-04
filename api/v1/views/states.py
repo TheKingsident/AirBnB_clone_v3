@@ -56,6 +56,20 @@ def create_state():
     return jsonify(new_state.to_dict()), 201
 
 
+@app_views.route('/states/', methods=['POST'])
+def create_state_w_slash():
+    """Creates a State"""
+    request_data = request.get_json()
+    if not request_data:
+        abort(400, description="Not a JSON")
+    if 'name' not in request_data:
+        abort(400, description="Missing name")
+    new_state = State(**request_data)
+    storage.new(new_state)
+    storage.save()
+    return jsonify(new_state.to_dict()), 201
+
+
 @app_views.route('/states/<state_id>', methods=['PUT'])
 def update_state(state_id):
     """Updates a State object"""
