@@ -12,7 +12,7 @@ from api.v1.views import app_views
 @app_views.route('/cities', methods=['GET'], strict_slashes=False)
 def get_cities():
     """Retrieves the list of all City objects"""
-    cities = storage.all(City).values()
+    cities = storage.all('City').values()
     return jsonify([city.to_dict() for city in cities])
 
 
@@ -20,7 +20,7 @@ def get_cities():
                  strict_slashes=False)
 def get_city_of_state(state_id):
     """Retrieves the list of all City objects of a State"""
-    state = storage.get(State, state_id)
+    state = storage.get('State', state_id)
     if not state:
         abort(404)
     cities = [city.to_dict() for city in state.cities]
@@ -52,7 +52,7 @@ def delete_city(city_id):
                  strict_slashes=False)
 def create_city(state_id):
     """Creates a City"""
-    state = storage.get(State, state_id)
+    state = storage.get('State', state_id)
     if not state:
         abort(404)
 
