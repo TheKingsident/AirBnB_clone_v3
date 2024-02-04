@@ -1,4 +1,5 @@
-# api/v1/views/users.py
+#!/usr/bin/python3
+"""Defines the methods for the User objects"""
 from flask import jsonify, abort, request
 from models import storage
 from models.user import User
@@ -46,6 +47,7 @@ def delete_user(user_id):
         storage.save()
         return jsonify({}), 200
     abort(404)
+
 
 @app_views.route('/users/<user_id>', methods=['PUT'], strict_slashes=False)
 def update_user(user_id):
