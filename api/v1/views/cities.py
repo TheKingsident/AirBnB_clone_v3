@@ -59,7 +59,7 @@ def update_city(city_id):
     request_data = request.get_json()
     if not request_data:
         abort(400, description="Not a JSON")
-    ignore = ['id', 'created_at', 'updated_at']
+    ignore = ['id', 'created_at', 'updated_at', 'state_id']
     for key, value in request_data.items():
         if key not in ignore:
             setattr(city, key, value)
