@@ -16,7 +16,6 @@ class TestStates(unittest.TestCase):
         self.client = app.test_client()
         self.app_context = app.app_context()
         self.app_context.push()
-        
 
     @classmethod
     def tearDownClass(self):
