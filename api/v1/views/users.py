@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Defines the methods for the User objects"""
-from flask import jsonify, abort, request
+from flask import abort
+from flask import jsonify
+from flask import request
 from models import storage
 from models.user import User
 from api.v1.views import app_views
