@@ -105,3 +105,20 @@ def update_state(state_id):
             setattr(state, key, value)
     storage.save()
     return jsonify(state.to_dict()), 200
+
+
+@app_views.route('/states/<state_id>/', methods=['PUT'])
+def update_state_w_slash(state_id):
+    """Updates a State object"""
+    state = storage.get('State', state_id)
+    if not state:
+        abort(404)
+    request_data = request.get_json()
+    if not request_data:
+        abort(400, description="Not a JSON")
+    ignore = ['id', 'created_at', 'updated_at']
+    for key, value in request_data.items():
+        if key not in ignore:
+            setattr(state, key, value)
+    storage.save()
+    return jsonify(state.to_dict()), 200
