@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-""" For Users End point
-"""
+"""For Users End point"""
 from api.v1.views import app_views
 from flask import abort
 from flask import jsonify

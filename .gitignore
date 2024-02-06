@@ -7,3 +7,4 @@ __pycache__/
 file.json
 10-dump.sql
 users.py
+module_documented.py
